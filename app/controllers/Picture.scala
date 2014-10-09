@@ -18,7 +18,7 @@ object Picture extends Controller {
                 val longitudeDiff = meijiJinguumaeLocation._2 - omotesandoLocation._2
 
                 //10分割
-                val divisionValue = 10
+                val divisionValue = 15
                 val locationUrlList = (0 to divisionValue).map{ index =>
                     (meijiJinguumaeLocation._1 - (latitudeDiff / divisionValue * index),
                      meijiJinguumaeLocation._2 - (longitudeDiff / divisionValue * index))
