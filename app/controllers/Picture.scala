@@ -33,7 +33,7 @@ object Picture extends Controller {
             }
 
             /* パラメータが想定外 */
-            case _ => BadRequest("You should input 'from' and 'to' parameters.")
+            case _ => BadRequest("You should input 'from' and 'to' parameters. ※現在対応しているのはfrom=明治神宮前とto=表参道のみ")
         }
     }
 
