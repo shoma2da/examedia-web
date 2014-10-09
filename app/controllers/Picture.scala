@@ -7,8 +7,10 @@ object Picture extends Controller {
 
     def pictures(from:Option[String], to:Option[String]) = Action {
         (from, to) match {
-            case (Some(fromString), Some(toString)) => Ok(views.html.index("to is " + toString + ". from is " + fromString + "."))
-            case _                                  => Ok(views.html.index("You shoud input to and from strings"))
+            case (Some(fromString), Some(toString)) => {
+                Ok(s"OK! Your input '${fromString}' as 'from', '${toString}' as 'to'")
+            }
+            case _ => BadRequest("You should input 'from' and 'to' parameters.")
         }
     }
 
