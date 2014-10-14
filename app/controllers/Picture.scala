@@ -5,7 +5,7 @@ import play.api.mvc._
 
 object Picture extends Controller {
 
-    def pictures(from:Option[String], to:Option[String]) = Action {
+    def pictures(from:Option[String], to:Option[String], division:Option[String]) = Action {
         (from, to) match {
             /* 明治神宮前→表参道の場合のみに対応 */
             case (Some(fromString), Some(toString)) if fromString == "明治神宮前" && toString == "表参道" => { //FIXME 駅名が固定！
@@ -17,8 +17,8 @@ object Picture extends Controller {
                 val latitudeDiff = meijiJinguumaeLocation._1 - omotesandoLocation._1
                 val longitudeDiff = meijiJinguumaeLocation._2 - omotesandoLocation._2
 
-                //10分割
-                val divisionValue = 15
+                //基本は15分割
+                val divisionValue = division.map(_.toInt).getOrElse(15)
                 val locationUrlList = (0 to divisionValue).map{ index =>
                     (meijiJinguumaeLocation._1 - (latitudeDiff / divisionValue * index),
                      meijiJinguumaeLocation._2 - (longitudeDiff / divisionValue * index))
